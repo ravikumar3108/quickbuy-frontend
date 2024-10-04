@@ -29,7 +29,7 @@ function AddProducts() {
     console.log(productData.description);
     try {
       const product = axios
-        .post("http://localhost:8000/product/createProduct", fdata)
+        .post("https://quickbuy-two.vercel.app/product/createProduct", fdata)
         .then((res) => {
           if (res.data.status === true) {
             toast.success("Product added successfully !!");

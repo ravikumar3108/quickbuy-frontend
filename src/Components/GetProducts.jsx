@@ -7,7 +7,7 @@ function GetProducts() {
   console.log(products);
   async function getProducts() {
     const data = await axios
-      .get("http://localhost:8000/product/getProduct")
+      .get("https://quickbuy-two.vercel.app/product/getProduct")
       .then((res) => {
         setProducts(res.data.products);
       });
