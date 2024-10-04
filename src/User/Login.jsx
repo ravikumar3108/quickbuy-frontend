@@ -23,7 +23,7 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     const data = await axios
-      .post("http://localhost:8000/users/login", login)
+      .post("https://quickbuy-two.vercel.app/users/login", login)
       .then((res) => {
         console.log(res)
         if (res.data.status === false) {

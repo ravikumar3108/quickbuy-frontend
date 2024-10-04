@@ -19,7 +19,7 @@ function Signup() {
 
  async function handleSubmit(e) {
     e.preventDefault();
-    const data = await axios.post("http://localhost:8000/users/signup", signup).then((res) => {
+    const data = await axios.post("https://quickbuy-two.vercel.app/users/signup", signup).then((res) => {
       console.log(res);
       console.log(res.data.status)
       if (res.data.status === false) {
