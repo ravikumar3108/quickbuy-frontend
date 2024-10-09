@@ -7,10 +7,13 @@ import img from "../Images/cart.jpg";
 import axios from "axios";
 import Listings from "../Auth/Listing";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import toast from "react-hot-toast";
 
 function Cart() {
+
   const [cartData, setCartData] = useState([]);
-  console.log(cartData);
+
+console.log(cartData)
   async function getCartProducts() {
     const main = new Listings();
     const res = await main
@@ -23,6 +26,35 @@ function Cart() {
       });
   }
  
+  async function addQuantity(id) {
+    const main = new Listings();
+    const response = main.add_quantity(id);
+    response.then((res) => {
+      window.location.reload();
+      console.log(res);
+    });
+  }
+
+  async function subQuantity(id) {
+    const main = new Listings();
+    const response = main.sub_quantity(id);
+    response.then((res) => {
+      window.location.reload();
+      console.log(res);
+    });
+  }
+  async function removeItem(id) {
+    const main = new Listings();
+    const response = main.remove(id);
+    response.then((res) => {
+      console.log(res);
+      toast.success("Remove an item");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    });
+  }
+
 
   useEffect(() => {
     getCartProducts();
@@ -36,7 +68,7 @@ function Cart() {
             <div className="bg-dark1 rounded-2xl p-3  m-auto">
               <h2 className="text-white text-center text-xl">Cart</h2>
               <ul className="my-3">
-                {cartData.length > 0 ? (
+                {cartData && cartData.length > 0 ? (
                   cartData &&
                   cartData.map((item) => {
                     const base64String = btoa(
@@ -66,18 +98,18 @@ function Cart() {
                           <div className="flex m-auto mt-10 xl:w-2/5">
                             <div className="flex justify-between">
                               <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <IoIosAdd />
+                                <IoIosAdd onClick={()=>{addQuantity(item._id)}}/>
                               </button>
                               <h3 className="p-2 px-3 rounded-md bg-main text-white m-2 h-10">
-                                1
+                                {item.quantity}
                               </h3>
                               <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <FiMinus />
+                                <FiMinus onClick={()=>{subQuantity(item._id)}}/>
                               </button>
                             </div>
                             <div className="flex justify-between sm:m-auto">
                               <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <MdDelete />
+                                <MdDelete onClick={()=>{removeItem(item._id)}}/>
                               </button>
                               <h3 className="text-center xl:pt-4 sm:pt-4 pt-4">
                                 Price : {item.item.price}

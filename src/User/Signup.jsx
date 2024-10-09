@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [signup, setSignup] = useState({
@@ -17,24 +18,26 @@ function Signup() {
     });
   }
 
- async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const data = await axios.post("https://quickbuy-two.vercel.app/users/signup", signup).then((res) => {
-      console.log(res);
-      console.log(res.data.status)
-      if (res.data.status === false) {
-        toast.error("User Already Registered");
-      } else if (res.data.status === true) {
-        toast.success("Create Account succesfull");
-      } else {
-        toast.error("Something went wrong!....");
-      }
-    });
+    const data = await axios
+      .post("https://quickbuy-two.vercel.app/users/signup", signup)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.status);
+        if (res.data.status === false) {
+          toast.error("User Already Registered");
+        } else if (res.data.status === true) {
+          toast.success("Create Account succesfull");
+        } else {
+          toast.error("Something went wrong!....");
+        }
+      });
   }
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <div className="h-screen flex justify-center items-center login p-3 py-3">
         <div className="w-full p-6 border-red-200 flex flex-col max-w-[590px]">
           <header className="text-center">
@@ -79,9 +82,9 @@ function Signup() {
               Sign Up Now
             </button>
             <p className="flex justify-center m-auto mt-3">
-              <a href="/login" className="text-white">
+              <Link to="/login" className="text-white">
                 Already an Account?
-              </a>
+              </Link>
             </p>
           </form>
         </div>

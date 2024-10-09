@@ -10,17 +10,17 @@ class Listings extends Component {
     return Api.get("product/getcartProducts");
   }
 
-  // async add_quantity(data) {
-  //   return Api.put(`/cart/addquantity/${data}`);
-  // }
+  async add_quantity(data) {
+    return Api.post(`product/addquantity/${data}`);
+  }
 
-  // async sub_quantity(data) {
-  //   return Api.put(`/cart/subquantity/${data}`);
-  // }
+  async sub_quantity(data) {
+    return Api.post(`product/subquantity/${data}`);
+  }
 
-  // async remove(data) {
-  //   return Api.post(`/cart/remove/${data}`);
-  // }
+  async remove(data) {
+    return Api.post(`product/remove/${data}`);
+  }
 
   render() {
     return <></>;

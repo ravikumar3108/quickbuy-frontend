@@ -1,15 +1,25 @@
 import React from "react";
 import product_img1 from "../Images/product-01.jpg.webp";
 import axios from "axios";
-import Listings  from "../Auth/Listing";
+import Listings from "../Auth/Listing";
+import { useAuthContext } from "../Auth/AuthUser";
+import { Link } from "react-router-dom";
+import { Toaster , toast } from "react-hot-toast";
 
 function Products({ data }) {
+  const { authUser } = useAuthContext();
+
   const Cart = async (id) => {
     const main = new Listings();
     const response = main.add_cart(id);
     response.then((res) => {
-      console.log(res);
+      // console.log(res);
     });
+  };
+
+  const UserNotLogin = () => {
+    console.log("func dhagd")
+      toast("Required Login")
   };
 
   const base64String = btoa(
@@ -18,6 +28,7 @@ function Products({ data }) {
 
   return (
     <>
+    <Toaster/>
       <div id="products">
         {/* sm md lg xl */}
         <div className="container m-auto">
@@ -51,9 +62,15 @@ function Products({ data }) {
                           </div>
                           <div className="flex justify-center">
                             <button
-                              onClick={() => {
-                                Cart(item._id);
-                              }}
+                              onClick={
+                                authUser ? (
+                                  () => {
+                                    Cart(item._id);
+                                  }
+                                ) : (
+                                 ()=>{ UserNotLogin()}
+                                )
+                              }
                               type="button"
                               className="ml-1 text-white bg-main hover:bg-main focus:ring-4 font-medium rounded-lg text-sm w-full  py-2"
                             >
