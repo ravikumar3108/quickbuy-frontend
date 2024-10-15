@@ -34,13 +34,13 @@ function Header() {
                   className={isOpen ? "active" : "flex justify-between links"}
                 >
                   <li>
-                    <Link to="">Products</Link>
+                    <Link to="/">Products</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact</Link>
                   </li>
                   <li>
-                    <Link to="/cart">Cart</Link>
+                    <Link to="product/cart">Cart</Link>
                   </li>
                   <li className={authUser ? "" : "hidden"}>
                     <Link to="/addproducts">Add Products</Link>
