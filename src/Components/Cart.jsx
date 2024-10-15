@@ -97,19 +97,19 @@ console.log(cartData)
 
                           <div className="flex m-auto mt-10 xl:w-2/5">
                             <div className="flex justify-between">
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <IoIosAdd onClick={()=>{addQuantity(item._id)}}/>
+                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{addQuantity(item._id)}}>
+                                <IoIosAdd />
                               </button>
                               <h3 className="p-2 px-3 rounded-md bg-main text-white m-2 h-10">
                                 {item.quantity}
                               </h3>
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <FiMinus onClick={()=>{subQuantity(item._id)}}/>
+                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{subQuantity(item._id)}}>
+                                <FiMinus />
                               </button>
                             </div>
                             <div className="flex justify-between sm:m-auto">
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10">
-                                <MdDelete onClick={()=>{removeItem(item._id)}}/>
+                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{removeItem(item._id)}}>
+                                <MdDelete />
                               </button>
                               <h3 className="text-center xl:pt-4 sm:pt-4 pt-4">
                                 Price : {item.item.price}
