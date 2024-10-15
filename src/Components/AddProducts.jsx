@@ -26,7 +26,6 @@ function AddProducts() {
     fdata.append("title", productData.title);
     fdata.append("description", productData.description);
     fdata.append("price", productData.price);
-    console.log(productData.description);
     try {
       const product = axios
         .post("https://quickbuy-two.vercel.app/product/createProduct", fdata)

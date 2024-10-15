@@ -4,7 +4,7 @@ import axios from "axios";
 import Listings from "../Auth/Listing";
 import { useAuthContext } from "../Auth/AuthUser";
 import { Link } from "react-router-dom";
-import { Toaster , toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 function Products({ data }) {
   const { authUser } = useAuthContext();
@@ -13,13 +13,15 @@ function Products({ data }) {
     const main = new Listings();
     const response = main.add_cart(id);
     response.then((res) => {
-      // console.log(res);
+      if (res.data.status == true) {
+        toast.success("Item add to cart");
+      }
     });
   };
 
   const UserNotLogin = () => {
-    console.log("func dhagd")
-      toast("Required Login")
+    console.log("func dhagd");
+    toast("Required Login");
   };
 
   const base64String = btoa(
@@ -28,7 +30,7 @@ function Products({ data }) {
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <div id="products">
         {/* sm md lg xl */}
         <div className="container m-auto">
@@ -63,13 +65,13 @@ function Products({ data }) {
                           <div className="flex justify-center">
                             <button
                               onClick={
-                                authUser ? (
-                                  () => {
-                                    Cart(item._id);
-                                  }
-                                ) : (
-                                 ()=>{ UserNotLogin()}
-                                )
+                                authUser
+                                  ? () => {
+                                      Cart(item._id);
+                                    }
+                                  : () => {
+                                      UserNotLogin();
+                                    }
                               }
                               type="button"
                               className="ml-1 text-white bg-main hover:bg-main focus:ring-4 font-medium rounded-lg text-sm w-full  py-2"

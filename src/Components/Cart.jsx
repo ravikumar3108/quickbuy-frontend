@@ -7,7 +7,7 @@ import img from "../Images/cart.jpg";
 import axios from "axios";
 import Listings from "../Auth/Listing";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 function Cart() {
   const [cartData, setCartData] = useState([]);
@@ -50,7 +50,7 @@ function Cart() {
       toast.success("Remove an item");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1000);
     });
   }
 
@@ -61,6 +61,7 @@ function Cart() {
   return (
     <>
       <Layout>
+        <Toaster/>
         <div id="cart" style={{ width: "80%", margin: "auto" }}>
           <div className="container m-auto my-10">
             <div className="bg-dark1 rounded-2xl p-3  m-auto">
