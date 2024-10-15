@@ -10,13 +10,12 @@ import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import toast from "react-hot-toast";
 
 function Cart() {
-
   const [cartData, setCartData] = useState([]);
 
-console.log(cartData)
+  console.log(cartData);
   async function getCartProducts() {
     const main = new Listings();
-    const res = await main
+    const res = main
       .get_cart()
       .then((result) => {
         setCartData(result.data.userProducts);
@@ -25,7 +24,7 @@ console.log(cartData)
         console.log("error in cart Products", err);
       });
   }
- 
+
   async function addQuantity(id) {
     const main = new Listings();
     const response = main.add_quantity(id);
@@ -55,7 +54,6 @@ console.log(cartData)
     });
   }
 
-
   useEffect(() => {
     getCartProducts();
   }, []);
@@ -72,7 +70,9 @@ console.log(cartData)
                   cartData &&
                   cartData.map((item) => {
                     const base64String = btoa(
-                      String.fromCharCode(...new Uint8Array(item?.item?.image?.data?.data || ""))
+                      String.fromCharCode(
+                        ...new Uint8Array(item?.item?.image?.data?.data || "")
+                      )
                     );
                     return (
                       <>
@@ -82,7 +82,9 @@ console.log(cartData)
                               className="w-full rounded-lg sm:w-40"
                               src={`data:image/;base64,${btoa(
                                 String.fromCharCode(
-                                  ...new Uint8Array(item?.item?.image?.data?.data || "")
+                                  ...new Uint8Array(
+                                    item?.item?.image?.data?.data || ""
+                                  )
                                 )
                               )}`}
                               alt=""
@@ -97,18 +99,33 @@ console.log(cartData)
 
                           <div className="flex m-auto mt-10 xl:w-2/5">
                             <div className="flex justify-between">
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{addQuantity(item._id)}}>
+                              <button
+                                className="p-2 rounded-md bg-main text-white m-2 h-10"
+                                onClick={() => {
+                                  addQuantity(item._id);
+                                }}
+                              >
                                 <IoIosAdd />
                               </button>
                               <h3 className="p-2 px-3 rounded-md bg-main text-white m-2 h-10">
                                 {item.quantity}
                               </h3>
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{subQuantity(item._id)}}>
+                              <button
+                                className="p-2 rounded-md bg-main text-white m-2 h-10"
+                                onClick={() => {
+                                  subQuantity(item._id);
+                                }}
+                              >
                                 <FiMinus />
                               </button>
                             </div>
                             <div className="flex justify-between sm:m-auto">
-                              <button className="p-2 rounded-md bg-main text-white m-2 h-10" onClick={()=>{removeItem(item._id)}}>
+                              <button
+                                className="p-2 rounded-md bg-main text-white m-2 h-10"
+                                onClick={() => {
+                                  removeItem(item._id);
+                                }}
+                              >
                                 <MdDelete />
                               </button>
                               <h3 className="text-center xl:pt-4 sm:pt-4 pt-4">
