@@ -40,7 +40,7 @@ function Header() {
                     <Link to="/contact">Contact</Link>
                   </li>
                   <li>
-                    <Link to="product/cart">Cart</Link>
+                    <Link to="/cart">Cart</Link>
                   </li>
                   <li className={authUser ? "" : "hidden"}>
                     <Link to="/addproducts">Add Products</Link>
