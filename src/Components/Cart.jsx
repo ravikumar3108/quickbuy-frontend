@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 function Cart() {
   const [cartData, setCartData] = useState([]);
 
+
   console.log(cartData);
   async function getCartProducts() {
     const main = new Listings();
@@ -29,7 +30,7 @@ function Cart() {
     const main = new Listings();
     const response = main.add_quantity(id);
     response.then((res) => {
-      window.location.reload();
+      getCartProducts();
       console.log(res);
     });
   }
@@ -38,7 +39,7 @@ function Cart() {
     const main = new Listings();
     const response = main.sub_quantity(id);
     response.then((res) => {
-      window.location.reload();
+      getCartProducts();
       console.log(res);
     });
   }
@@ -49,7 +50,7 @@ function Cart() {
       console.log(res);
       toast.success("Remove an item");
       setTimeout(() => {
-        window.location.reload();
+        getCartProducts();
       }, 1000);
     });
   }
