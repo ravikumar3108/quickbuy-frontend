@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [signup, setSignup] = useState({
@@ -18,17 +18,20 @@ function Signup() {
     });
   }
 
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     const data = await axios
       .post("https://quickbuy-two.vercel.app/users/signup", signup)
       .then((res) => {
         console.log(res);
-        console.log(res.data.status);
-        if (res.data.status === false) {
-          toast.error("User Already Registered");
-        } else if (res.data.status === true) {
+        if (res.data.status) {
           toast.success("Create Account succesfull");
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
+        } else if (res.data.status == false) {
+          toast.error("User Already Registered");
         } else {
           toast.error("Something went wrong!....");
         }
@@ -53,6 +56,7 @@ function Signup() {
                 name="name"
                 onChange={getValue}
                 placeholder="Your Name"
+                required
                 className="input input-bordered w-full max-w-xs rounded-2xl p-3"
               />
             </div>
@@ -62,6 +66,7 @@ function Signup() {
                 name="email"
                 onChange={getValue}
                 placeholder="Email"
+                required
                 className="input input-bordered w-full max-w-xs rounded-2xl p-3"
               />
             </div>
@@ -71,6 +76,7 @@ function Signup() {
                 name="password"
                 onChange={getValue}
                 placeholder="Password"
+                required
                 className="input input-bordered w-full max-w-xs rounded-2xl p-3"
               />
             </div>

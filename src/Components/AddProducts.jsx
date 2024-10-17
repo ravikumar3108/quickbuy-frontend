@@ -20,13 +20,13 @@ function AddProducts() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
     const fdata = new FormData();
     fdata.append("image", productImg);
     fdata.append("title", productData.title);
     fdata.append("description", productData.description);
     fdata.append("price", productData.price);
     try {
+      // .post("http://localhost:8000/product/createProduct", fdata)
       const product = axios
         .post("https://quickbuy-two.vercel.app/product/createProduct", fdata)
         .then((res) => {
@@ -44,7 +44,7 @@ function AddProducts() {
   return (
     <>
       <Toaster />
-      <Layout>
+      <Layout protect={true}>
         <div className="flex justify-center items-center login p-3">
           <div className="w-full p-6 border-red-200 flex flex-col max-w-[590px]">
             <header className="text-center">
@@ -60,6 +60,7 @@ function AddProducts() {
                   type="text"
                   name="title"
                   onChange={setData}
+                  required
                   placeholder="Title"
                   className="input input-bordered w-full max-w-xs rounded-2xl p-3"
                 />
@@ -80,6 +81,7 @@ function AddProducts() {
                   name="price"
                   placeholder="Price"
                   onChange={setData}
+                  required
                   className="input input-bordered w-full max-w-xs rounded-2xl p-3"
                 />
               </div>
@@ -89,6 +91,7 @@ function AddProducts() {
                   type="file"
                   name="image"
                   placeholder="Image"
+                  required
                   onChange={({ target: { files } }) => {
                     files[0] && setProductImg(files[0]);
                     if (files) {

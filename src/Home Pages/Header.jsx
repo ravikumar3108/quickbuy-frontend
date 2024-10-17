@@ -6,7 +6,6 @@ import { IoIosLogOut } from "react-icons/io";
 import Listings from "../Auth/Listing";
 
 function Header() {
-
   const [isOpen, setOpen] = useState(false);
   const { authUser, setAuthUser } = useAuthContext();
   console.log("Header", authUser);
@@ -14,13 +13,12 @@ function Header() {
     setOpen(!isOpen);
   };
 
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function Logout() {
     localStorage.removeItem("quickbuy");
     localStorage.removeItem("token");
     setAuthUser(null);
-    window.location.href = ('/login')
+    window.location.href = "/login";
   }
   return (
     <>
@@ -47,7 +45,13 @@ function Header() {
                   <li>
                     <Link to="/cart">Cart</Link>
                   </li>
-                  <li className={authUser ? "" : "hidden"}>
+                  <li
+                    className={
+                      authUser && authUser.email === "gullukumar3108@gmail.com"
+                        ? ""
+                        : "hidden"
+                    }
+                  >
                     <Link to="/addproducts">Add Products</Link>
                   </li>
                 </ul>
