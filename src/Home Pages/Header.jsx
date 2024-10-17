@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
 import { useAuthContext } from "../Auth/AuthUser";
 import { IoIosLogOut } from "react-icons/io";
+import Listings from "../Auth/Listing";
 
 function Header() {
+
   const [isOpen, setOpen] = useState(false);
   const { authUser, setAuthUser } = useAuthContext();
   console.log("Header", authUser);
@@ -12,10 +14,13 @@ function Header() {
     setOpen(!isOpen);
   };
 
+  
+  const navigate = useNavigate()
   function Logout() {
     localStorage.removeItem("quickbuy");
     localStorage.removeItem("token");
     setAuthUser(null);
+    window.location.href = ('/login')
   }
   return (
     <>

@@ -2,6 +2,9 @@ import { Component } from "react";
 import Api from "./Api";
 
 class Listings extends Component {
+  async profile() {
+    return Api.get(`product/profile`);
+  }
   async add_cart(id) {
     return Api.post(`product/addtocart/${id}`);
   }

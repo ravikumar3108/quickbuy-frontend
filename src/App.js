@@ -7,6 +7,7 @@ import Home from './Layout/Home';
 import Contact from './Home Pages/Contact';
 import AddProducts from './Components/AddProducts';
 import Cart from './Components/Cart';
+import Payment from './Components/Payment';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/addproducts' element={<AddProducts/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/payment' element={<Payment/>}/>
       </Routes>
     </BrowserRouter>
     </>
