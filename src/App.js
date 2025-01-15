@@ -4,10 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from "./User/Login"
 import Signup from "./User/Signup"
 import Home from './Layout/Home';
-import Contact from './Home Pages/Contact';
+import Contact from './Pages/Contact';
 import AddProducts from './Components/AddProducts';
 import Cart from './Components/Cart';
-import Payment from './Components/Payment';
+import Product from './Pages/Product';
+import Checkout from './Components/Order/Checkout';
+import ProductOverview from "./Components/ProductOverview"
+import Notfound from './Pages/Notfound';
+import Confirmation from "./Components/Order/Confirmation"
 
 function App() {
   return (
@@ -20,7 +24,11 @@ function App() {
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/addproducts' element={<AddProducts/>}/>
             <Route path='/cart' element={<Cart/>}/>
-            <Route path='/payment' element={<Payment/>}/>
+            <Route path='/product' element={<Product/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/overview' element={<ProductOverview/>}/>
+            <Route path='/confirmation' element={<Confirmation/>}/>
+            <Route path='/*' element={<Notfound/>}/>
       </Routes>
     </BrowserRouter>
     </>

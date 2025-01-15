@@ -35,7 +35,7 @@ function Login() {
           setAuthUser(res.data.user)
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 1000);
         } else {
           toast.error("Something went wrong!....");
         }

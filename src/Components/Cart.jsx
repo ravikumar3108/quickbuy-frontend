@@ -8,7 +8,6 @@ import axios from "axios";
 import Listings from "../Auth/Listing";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
-import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
 
 function Cart() {
@@ -166,7 +165,7 @@ function Cart() {
                   )}
                 </ul>
               )}
-              <Link to={"/payment"}>
+              <Link to={"/checkout"}>
                 <p className="text-center bg-main rounded-xl p-2 text-white">Checkout</p>
               </Link>
             </div>

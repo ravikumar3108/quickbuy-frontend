@@ -1,18 +1,21 @@
 import React from "react";
-import Header from "../Home Pages/Header";
-import HeroSection from "../Home Pages/HeroSection";
-import Products from "../Home Pages/Products";
-import Contact from "../Home Pages/Contact";
+import HeroSection from "../Pages/HeroSection";
+import Contact from "../Pages/Contact";
 import GetProducts from "../Components/GetProducts";
-import Footer from "../Home Pages/Footer";
 import Layout from "./Layout";
+import Team from "../Pages/Team";
+import Blogs from "../Pages/Blogs";
+import Pomotion from "../Pages/Pomotion";
 
 function Home() {
   return (
     <>
       <Layout>
         <HeroSection />
+        <Pomotion/>
         <GetProducts />
+        <Team/>
+        <Blogs/>
         <Contact />
       </Layout>
     </>
