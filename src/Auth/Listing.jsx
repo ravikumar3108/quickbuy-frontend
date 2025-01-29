@@ -5,6 +5,10 @@ class Listings extends Component {
   async profile() {
     return Api.get(`product/profile`);
   }
+  async deleteProduct(id) {
+    return Api.post(`product/deleteProduct/${id}`);
+  }
+
   async add_cart(id) {
     return Api.post(`product/addtocart/${id}`);
   }

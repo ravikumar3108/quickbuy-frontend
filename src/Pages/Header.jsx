@@ -37,7 +37,7 @@ function Header() {
                   className={isOpen ? "active" : "flex justify-between links"}
                 >
                   <li>
-                    <Link to="/">Products</Link>
+                    <Link to="/">Favourites</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact</Link>

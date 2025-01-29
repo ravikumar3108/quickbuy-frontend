@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Layout from "../Layout/Layout";
+import AdminNav from "./AdminNav";
 
 function AddProducts() {
   const [productImg, setProductImg] = useState("");
@@ -25,6 +26,7 @@ function AddProducts() {
     fdata.append("title", productData.title);
     fdata.append("description", productData.description);
     fdata.append("price", productData.price);
+    fdata.append("category", productData.category);
     try {
       // .post("http://localhost:8000/product/createProduct", fdata)
       const product = axios
@@ -44,11 +46,12 @@ function AddProducts() {
   return (
     <>
       <Toaster />
-      <Layout protect={true}>
+      {/* <Layout protect={true}> */}
+      <AdminNav></AdminNav>
         <div className="flex justify-center items-center login p-3">
           <div className="w-full p-6 border-red-200 flex flex-col max-w-[590px]">
             <header className="text-center">
-              <h2 className="text-white text-[30px] my-3">Create Products</h2>
+              <h2 className="text-white text-[30px] my-3">Add Products</h2>
             </header>
             <form
               action=""
@@ -87,6 +90,15 @@ function AddProducts() {
               </div>
 
               <div>
+               <select  onChange={setData} name="category" id="" className="input input-bordered w-full max-w-xs rounded-2xl p-3" required>
+                <option value="">Select a Category</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Furniture">Furniture</option>
+               </select>
+              </div>
+
+              <div>
                 <input
                   type="file"
                   name="image"
@@ -122,7 +134,7 @@ function AddProducts() {
             </form>
           </div>
         </div>
-      </Layout>
+      {/* </Layout> */}
     </>
   );
 }

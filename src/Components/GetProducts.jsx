@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Product from "../Pages/Product";
 import { useAuthContext } from "../Auth/AuthUser";
 import Listings from "../Auth/Listing";
+import toast from "react-hot-toast";
 
 function GetProducts() {
   const [products, setProducts] = useState([]);
@@ -11,8 +12,7 @@ function GetProducts() {
   const { authUser } = useAuthContext();
 
   const UserNotLogin = () => {
-    // toast("Required Login");
-    alert("User not")
+    toast("Required Login");
   };
 
   const filterByCategory = (category) => {
@@ -37,8 +37,7 @@ function GetProducts() {
     const response = main.add_cart(id);
     response.then((res) => {
       if (res.data.status == true) {
-        // toast.success("Item add to cart");
-        alert("Cart item")
+        toast.success("Added");
       }
     });
   };

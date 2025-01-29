@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 function Cart() {
   const [cartData, setCartData] = useState([]);
   const [load, setLoad] = useState(true);
-  console.log(cartData);
   async function getCartProducts() {
     const main = new Listings();
     main
@@ -166,7 +165,9 @@ function Cart() {
                 </ul>
               )}
               <Link to={"/checkout"}>
-                <p className="text-center bg-main rounded-xl p-2 text-white">Checkout</p>
+                <p className="text-center bg-main rounded-xl p-2 text-white">
+                  Checkout
+                </p>
               </Link>
             </div>
           </div>

@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import Listings from "../Auth/Listing";
+import toast, { Toaster } from "react-hot-toast";
+import { useAuthContext } from "../Auth/AuthUser";
 
 function ProductOverview() {
   const [id] = useSearchParams();
   const productId = id.get("id");
   const [products, setProducts] = useState([]);
+  const { authUser } = useAuthContext();
 
   async function getProducts() {
     const data = await axios
-      .get(`https://quickbuy-two.vercel.app/product/getProduct`)
+      .post(`http://localhost:8000/product/singleProduct${productId}`)
       .then((res) => {
-        setProducts(res.data.products);
+        setProducts(res.data.products[0]);
       });
   }
 
@@ -20,8 +24,23 @@ function ProductOverview() {
     getProducts();
   }, []);
 
+  const Cart = async (id) => {
+    const main = new Listings();
+    const response = main.add_cart(id);
+    response.then((res) => {
+      if (res.data.status == true) {
+        toast.success("Added");
+      }
+    });
+  };
+
+  const UserNotLogin = () => {
+    toast("Required Login");
+  };
+
   return (
     <>
+      <Toaster />
       <Layout>
         <section class="py-8 md:py-16 dark:bg-gray-900 antialiased">
           <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
@@ -30,22 +49,20 @@ function ProductOverview() {
                 <img
                   class="w-full dark:hidden"
                   src={`data:image/;base64,${btoa(
-                    String
-                      .fromCharCode
-                      // ...new Uint8Array(item?.image?.data?.data || "")
-                      ()
+                    String.fromCharCode(
+                      ...new Uint8Array(products?.image?.data?.data || "")
+                    )
                   )}`}
                   alt=""
                 />
               </div>
               <div class="mt-6 sm:mt-8 lg:mt-0">
                 <h1 class="text-xl font-semibold text-gray-200 sm:text-2xl dark:text-white">
-                  Apple iMac 24" All-In-One Computer, Apple M1, 8GB RAM, 256GB
-                  SSD, Mac OS, Pink
+                  {products.title}
                 </h1>
                 <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
                   <p class="text-2xl font-extrabold text-gray-200 sm:text-3xl dark:text-white">
-                    $1,249.99
+                    $ {products.price}
                   </p>
 
                   <div class="flex items-center gap-2 mt-2 sm:mt-0">
@@ -116,11 +133,11 @@ function ProductOverview() {
                   <Link
                     to={""}
                     title=""
-                    class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     role="button"
                   >
                     <svg
-                      class="w-5 h-5 -ms-2 me-2"
+                      className="w-5 h-5 -ms-2 me-2"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -130,23 +147,30 @@ function ProductOverview() {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
                       />
                     </svg>
                     Add to favorites
                   </Link>
 
-                  <Link
-                    to="#"
-                    title=""
-                    class="text-white mt-4 sm:mt-0 bg-main hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 flex items-center justify-center"
-                    role="button"
+                  <button
+                    onClick={
+                      authUser
+                        ? () => {
+                            Cart(products._id);
+                          }
+                        : () => {
+                            UserNotLogin();
+                          }
+                    }
+                    type="button"
+                    className="mt-3 w-full text-center flex justify-center rounded-lg bg-main px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4  focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800"
                   >
                     <svg
-                      class="w-5 h-5 -ms-2 me-2"
+                      className="-ms-2 me-2 h-5 w-5"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -156,14 +180,14 @@ function ProductOverview() {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
                       />
                     </svg>
                     Add to cart
-                  </Link>
+                  </button>
                 </div>
 
                 <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />

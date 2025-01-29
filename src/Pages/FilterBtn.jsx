@@ -1,6 +1,6 @@
 import React from "react";
 
-function FilterBtn({filterBar,setFilterBar,filterByCategory}) {
+function FilterBtn({ filterBar, setFilterBar, filterByCategory }) {
   return (
     <>
       <button
@@ -48,38 +48,26 @@ function FilterBtn({filterBar,setFilterBar,filterByCategory}) {
           <ul className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400">
             <li>
               <button
-                onClick={() => filterByCategory("Milf")}
+                onClick={() => filterByCategory("Clothes")}
                 className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                Milf
-              </button>
-            </li>
-            <li>
-              <button 
-               onClick={() => filterByCategory("Step-Sis")}
-               className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                Step Sister
-              </button>
-            </li>
-            <li>
-              <button 
-               onClick={() => filterByCategory("Sleeping")}
-              className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                Sleeping
+                Clothes
               </button>
             </li>
             <li>
               <button
-               onClick={() => filterByCategory("Massage")}
-              className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                Massage
+                onClick={() => filterByCategory("Electronics")}
+                className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Electronics
               </button>
             </li>
             <li>
-              <button 
-               onClick={() => filterByCategory("Desi")}
-              className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                Desi 365
+              <button
+                onClick={() => filterByCategory("Furniture")}
+                className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Furniture
               </button>
             </li>
           </ul>
