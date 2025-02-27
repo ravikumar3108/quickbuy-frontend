@@ -8,7 +8,9 @@ class Listings extends Component {
   async deleteProduct(id) {
     return Api.post(`product/deleteProduct/${id}`);
   }
-
+  async add_product(data) {
+    return Api.post(`product/createProduct`, data);
+  }
   async add_cart(id) {
     return Api.post(`product/addtocart/${id}`);
   }

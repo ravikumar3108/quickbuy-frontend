@@ -8,7 +8,7 @@ import Listings from "../Auth/Listing";
 function Header() {
   const [isOpen, setOpen] = useState(false);
   const { authUser, setAuthUser } = useAuthContext();
-  console.log("Header", authUser);
+  // console.log("Header", authUser);
   const toggleMenu = () => {
     setOpen(!isOpen);
   };

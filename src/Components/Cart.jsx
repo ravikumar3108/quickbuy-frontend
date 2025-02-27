@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 function Cart() {
   const [cartData, setCartData] = useState([]);
   const [load, setLoad] = useState(true);
+  
   async function getCartProducts() {
     const main = new Listings();
     main
@@ -33,6 +34,7 @@ function Cart() {
 
   const ITEM = ({ item }) => {
     const [quantity, setquantity] = useState(item.quantity);
+    console.log("itemdata",item.item)
     const base64String = btoa(
       String.fromCharCode(
         ...new Uint8Array(item?.item?.image?.data?.data || "")
@@ -83,8 +85,8 @@ function Cart() {
               alt=""
             />
             <div className="ml-4 hidden xl:block sm:block">
-              <h4 className="text-white">Title : {item.item.title}</h4>
-              <p>Description : {item.item.description}</p>
+              <h4 className="text-white">Title : {item.item?.title}</h4>
+              <p>Description : {item.item?.description}</p>
             </div>
           </div>
 
@@ -120,7 +122,7 @@ function Cart() {
                 <MdDelete />
               </button>
               <h3 className="text-center xl:pt-4 sm:pt-4 pt-4">
-                Price : ${item.item.price * quantity}
+                Price : ${item.item?.price * quantity}
               </h3>
             </div>
           </div>

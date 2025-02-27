@@ -14,6 +14,7 @@ import Notfound from './Pages/Notfound';
 import Confirmation from "./Components/Order/Confirmation"
 import DashboardLayout from './Admin/DashboardLayout';
 
+
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/admin-addproducts' element={<AddProducts/>}/>
+            <Route path='/addproducts' element={<AddProducts/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/product' element={<Product/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
