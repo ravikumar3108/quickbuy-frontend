@@ -29,18 +29,18 @@ function AddProducts() {
     fdata.append("description", productData.description);
     fdata.append("price", productData.price);
     fdata.append("category", productData.category);
-    const main = new Listings();
+    // const main = new Listings();
     try {
-      const response = main.add_product(fdata);
-      // const product = axios
-      //   .post("https://quickbuy-two.vercel.app/product/createProduct", fdata)
-      response.then((res) => {
-        if (res.data.status === true) {
-          toast.success("Product added successfully !!");
-        } else {
-          toast.error("Failed to add product.");
-        }
-      });
+      // const response = main.add_product(fdata);
+      const product = axios
+        .post("https://quickbuy-two.vercel.app/product/createProduct", fdata)
+        .then((res) => {
+          if (res.data.status) {
+            toast.success("Product added successfully !!");
+          } else {
+            toast.error("Failed to add product.");
+          }
+        });
     } catch (error) {
       console.log("Error in create product", error);
     }
